@@ -6,7 +6,6 @@ class Node {
 }
 
 class LinkedList {
-
   constructor() {
     this.head = null;
   }
@@ -62,22 +61,31 @@ class LinkedList {
   getTail() {
     let current = this.head;
 
-    while(current !== null){
+    while(current.nextNode !== null){
       current = current.nextNode;
+      }
       return current;
     }
-  }
 
   //Returns the node at the specified index
   at(index) {
     let current = this.head;
-    for(let i = 0; i < index; i += 1){
+    for(let i = 1; i < index; i += 1){
       current = current.nextNode;
     }
     if (current === null){
       return alert('Index not found');
     } 
     return current;
+  }
+
+  //Removes the last node
+  pop() {
+    let index = list.size();
+    let prevNode = list.at(index - 1);
+    prevNode.nextNode = null;
+    
+    return this.head;
   }
 }
 
@@ -93,3 +101,5 @@ console.log(list.size());
 console.log(list.getHead());
 console.log(list.getTail());
 console.log(list.at(3));
+console.log(list.pop());
+console.log(list.size());
