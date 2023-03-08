@@ -87,6 +87,50 @@ class LinkedList {
     
     return this.head;
   }
+
+  //Searches list for value and returns true if found
+  contains(value) {
+    let current = this.head;
+    let index = 0;
+
+    while(current !== null) {
+      
+      if (current.value === value) {
+        return true;
+      } else {
+        current = current.nextNode;
+      }
+    }
+    return false;
+  }
+
+  //Finds and returns the index of the node containing the value
+  find(value) {
+    let current = this.head;
+    let index = 0;
+    while(current !== null) {
+      index += 1;
+      if (current.value === value) {
+        return index;
+      } else 
+        current = current.nextNode;
+    }
+    return alert('Value not found');
+  }
+
+  //Represents LinkedList objects as string
+  toString() {
+    let current = this.head;
+    let str = '';
+
+    while(current !== null) {
+      str += `( ${current.value} ) -> `;
+      current = current.nextNode;
+    }
+    str += 'null';
+
+    return console.log(str);
+  }
 }
 
 const list = new LinkedList();
@@ -97,9 +141,5 @@ list.append(30);
 list.prepend(5);
 list.prepend(1);
 console.log(list);
-console.log(list.size());
-console.log(list.getHead());
-console.log(list.getTail());
-console.log(list.at(3));
-console.log(list.pop());
-console.log(list.size());
+console.log(list.contains(30));
+list.toString();
