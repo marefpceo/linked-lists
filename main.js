@@ -70,21 +70,20 @@ class LinkedList {
   //Returns the node at the specified index
   at(index) {
     let current = this.head;
+    if (index > this.size() || index < 0 || current === null){
+      return alert('Index not found');
+    } 
     for(let i = 1; i < index; i += 1){
       current = current.nextNode;
     }
-    if (current === null){
-      return alert('Index not found');
-    } 
     return current;
   }
 
   //Removes the last node
   pop() {
-    let index = list.size();
-    let prevNode = list.at(index - 1);
+    let index = this.size();
+    let prevNode = this.at(index - 1);
     prevNode.nextNode = null;
-    
     return this.head;
   }
 
@@ -128,18 +127,34 @@ class LinkedList {
       current = current.nextNode;
     }
     str += 'null';
-
     return console.log(str);
   }
+
+  //Inserts a new node at the specified index
+  insertAt(value, index) { 
+    if (index > this.size() || index < 0){
+      return alert('Index not found');
+    } else {
+      let node = new Node(value);
+      let beforeNode = this.at(index);
+      let afterNode = this.at(index + 1);
+
+      beforeNode.nextNode = node;
+      node.nextNode = afterNode;
+      return this.head;
+    }
+  }
+
+  //Removes node from the specified index
+  removeAt(index) {
+    if (index > this.size() || index < 0) {
+      return alert('Index not found');
+    } else {
+      let node = this.at(index);
+      let beforeNode = this.at(index - 1);
+      let afterNode = this.at(index + 1);
+      beforeNode.nextNode = afterNode;
+    }
+  }
+
 }
-
-const list = new LinkedList();
-
-list.append(16); 
-list.append(20);
-list.append(30);
-list.prepend(5);
-list.prepend(1);
-console.log(list);
-console.log(list.contains(30));
-list.toString();
